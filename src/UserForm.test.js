@@ -1,6 +1,6 @@
 //whrite test for UserForm component
 
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import UserForm from "./UserForm";
 

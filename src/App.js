@@ -8,7 +8,6 @@ function App() {
 
   const onUserAdd = (user) => {
     setUsers([...users, user]);
-    console.log(users);
   };
 
   return (
