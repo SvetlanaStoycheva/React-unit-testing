@@ -7,6 +7,7 @@ https://www.udemy.com/share/107RnM3@GLCZoiPcIODQTU3B_NC5OqH1Atz7lYGqNFD8zumiL3Zi
 1. How to run tests:
    open new terminal => npm test
 2. Help to get DOM element => screen.logTestingPlaygroundURL();
+3. To see what is rendered in the fake test DOM => write inside the tets: screen.debug()
 
 #### Theory
 
@@ -22,14 +23,21 @@ Help to find the correct query method: screen.logTestingPlaygroundURL();
 **Jest Matchers** They are global functions (we don't neet to import them) They can be provided by Jest (more general perpose) or React testing library\
 expect(inputs).toBeInTheDocumnet()
 
-**Mock functions** A fake function that records whenever it gets called, and the arguments it was called with. Used very often when we want to make sure a component calls a callback.\
-jest.fn()
+**Mock functions/example in UserForm.test.js** A fake function that records whenever it gets called, and the arguments it was called with. Used very often when we want to make sure a component calls a callback.\
+const mock = jest.fn();
+expect(mock).toHaveBeenCalled();
+expect(mock).toHaveBeenCalledWith({ name: "John", email: "john@mail.com" });
 
 #### Query functions / prove that certain element exists in the DOM / getBy, queryBy, FindBy, getAllBy etc.
 
 When to use them?\
 **getBy**: we use to prove that element exists in the DOM
-const Button = screen.getByRole('button)
+const Button = screen.getByRole('button)\
+
+To select an element that does not have class, role etc.
+
+- add to the html tag an attribute aria-label='testname' and in the test get the element const container = screen.getByLabelText('testname')
+- getByTestId("users") with attribute: data-testid="users"
 
 **queryBy**: we use to prove that element does not exist in the DOM.
 const element = screen.queryByRole('textbox) //does not throw false in the test
@@ -41,13 +49,14 @@ We can create custom matchers to reuse their logic in different tests.
 
 #### Run tests in the terminal
 
-    Jest will find all tests and run them. So the test files must meet at least one of these 	criteria:
-    - end with .spec.js
-    - end with .test.js
-    - are placed in folder called __test__
+Jest will find all tests and run them. So the test files must meet at least one of these criteria:
 
-    npm test
-    to run tests in only one specific file => press w => press p => type file name (no case sensitive, for ex. userlist)
+- end with .spec.js
+- end with .test.js
+- are placed in folder called **test**
+
+npm test
+to run tests in only one specific file => press w => press p => type file name (no case sensitive, for ex. userlist)
 
 ### `npm start`
 
